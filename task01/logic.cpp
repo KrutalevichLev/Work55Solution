@@ -10,22 +10,27 @@ double find_avg_mark(int marks[], int length) {
 	return sum / length;
 }
 
-string get_the_best_class(int first_class[],int second_class[], int third_class[], int length) {
-	double first_avg = find_avg_mark(first_class, length);
-	double second_avg = find_avg_mark(second_class, length);
-	double third_avg = find_avg_mark(third_class, length);
+string get_the_best_class(int classA[],int classB[], int classC[], int length) {
+	string best_class = "class A";
 
-	string msg;
+	int A = find_avg_mark(classA, length);
+	int B = find_avg_mark(classB, length);
+	int C = find_avg_mark(classC, length);
 
-	if (first_avg > second_avg && first_avg > third_avg) {
-		msg = "first";
-	}
-	else if (second_avg > first_avg && second_avg > third_avg) {
-		msg = "second";
-	}
-	else {
-		msg = "third";
-	}
 
-	return msg;
+	int count = 3;
+	double avr[]{ A,B,C };
+	string classes[]{ "A","B","C"};
+
+	int index = 0;
+	string cl = classes[0];
+	for (int i = 1; i < count; i++)
+	{
+		if (avr[index] < avr[i]) {
+			index = i;
+			cl = classes[i];
+
+		}
+	}
+	return "class " + cl;
 }
